@@ -1244,33 +1244,22 @@ void task_knb()
 	
 
 }
-void task_3_13_1()
-{
-	int a, b, c,max=0,min=0,sredn=0;
-	cin >> a >> b >> c;
-	if(a!=b && a!=c && b!=c)
-	{ 
-		if (b>a && c>a)
-		{
-			min = a;
-		}
-		if (b > a && b < c)
-		{
-			sredn = b;
-		}
-		if (c > b && c > a)
-		{
-			max = c;
-		}
-		cout << min << " - минимальное число " << endl;
-		cout << sredn << "- среднее число " << endl;
-		cout << max << " - максимальное число " << endl;
-	}
-	else
-		cout << "пипа" << endl;
-		
-	
 
+void task_1()
+{
+	int const n = 5;
+	int a[n];
+	int i;
+	for (i = 0; i < n; i++)
+	{
+		a[i] = rand() % 10;
+	}
+
+	sort(a, a + i);
+	for (int i = 0; i < n; i++)
+	{
+		cout << a[i] << " ";
+	}
 }
 
 
@@ -1323,6 +1312,6 @@ int main()
 	//task_vanya3();
 	//task_papa8();
 	//task_knb();
-	task_3_13_1();
+	task_1();
 	system("pause");
 }
