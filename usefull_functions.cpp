@@ -13,7 +13,7 @@ namespace pipa
 	{
 		for (int i = 0; i < n; i++)
 		{
-			a[i] = -10 + std::rand() % r;
+			a[i] = std::rand() % r;
 		}
 	}
 

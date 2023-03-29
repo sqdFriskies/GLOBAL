@@ -1249,17 +1249,11 @@ void task_1()
 {
 	int const n = 5;
 	int a[n];
-	int i;
-	for (i = 0; i < n; i++)
-	{
-		a[i] = rand() % 10;
-	}
+	int r = 10;
+	pipa::createRandArray(a, n, r);
 
-	sort(a, a + i);
-	for (int i = 0; i < n; i++)
-	{
-		cout << a[i] << " ";
-	}
+	sort(a, a + n);
+	pipa::printArray(a, n);
 }
 
 
