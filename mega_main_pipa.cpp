@@ -1245,7 +1245,7 @@ void task_knb()
 
 }
 
-void task_1()
+void task_1_array()
 {
 	int const n = 5;
 	int a[n];
@@ -1255,8 +1255,62 @@ void task_1()
 	sort(a, a + n);
 	pipa::printArray(a, n);
 }
+void task_2_array()
+{
+	/*Знайдіть серед останніх n елементів суму парних.*/
+	int const n = 5;
+	int a[n];
+	int r = 10;
+	pipa::createRandArray(a, n, r);
+	int summ = 0;
+	pipa::printArray(a, n);
+	for (int i = 0; i < n; i++)
+	{
+
+		if (a[i] % 2 == 0)
+		{
+			summ += a[i];
+		}
+
+	}
+	cout << summ;
+	
+}
+void task_3_array()
+{
+	/*Знайдіть в масиві перший елемент, що є тризначним числом.*/
+	int const n = 5;
+	int a[n];
+	int r = 200;
+	int a1;
+	pipa::createRandArray(a, n, r);
+	pipa::printArray(a, n);
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] >= 100 && a[i]<=999)a1 = a[i]; break;
+	}
+	cout << a1;
+}
+void task_4_array()
+{
+	int n;
+	double sum = 0;
+	double x;
+	cin >> n >> x;
+	for (int i = 1; i <= n; i++)
+	{
+		sum += x / sqrt(i);
+		cout << x << "/" << sqrt(i)<<endl;
+	}
+	cout << 1 + x + sum;
+}
+void task_5()
+{
+	int y = 0;
+	
 
 
+}
 int main()
 {
 	srand(time(0));
@@ -1306,6 +1360,10 @@ int main()
 	//task_vanya3();
 	//task_papa8();
 	//task_knb();
-	task_1();
+	//task_1_array();
+	//task_2_array();
+	// task_3_array();
+	//task_4_array();
+	task_5();
 	system("pause");
 }
