@@ -1,0 +1,41 @@
+
+{
+  "version": "2.0.0",
+  "tasks": 
+  [
+      {
+          "label": "Configure Ic-Middleware",
+          "type": "shell",
+          "command": "cmake -DCMAKE_BUILD_TYPE=Debug build ..", //-DLOGGING=ON
+          "options": {
+              "cwd": "${workspaceFolder}/build"
+          },
+          "problemMatcher": [
+              "$gcc"
+          ],
+          "dependsOn": [
+              "SaveAllFiles"
+          ]
+      },
+      {
+          "label": "Save & Build & Debug pipa",
+          "type": "shell",
+          "command": "make -j8",
+          "options": {
+              "cwd": "${workspaceFolder}/build"
+          },
+          "problemMatcher": [
+              "$gcc"
+          ],
+          "dependsOn": [
+              "SaveAllFiles"
+          ]
+      },
+      {
+        "label": "SaveAllFiles",
+        "command": "${command:workbench.action.files.saveAll}",
+        "type": "shell",
+        "problemMatcher": []
+    }
+  ]
+}

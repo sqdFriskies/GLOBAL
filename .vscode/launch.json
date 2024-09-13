@@ -1,0 +1,33 @@
+{
+
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Save & Build & Debug pipa",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/pipa_learning",
+            "args": [
+              "30000 172.31.125.123 30001"
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "setupCommands": [
+              {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+              }
+            ],
+            //"envFile": "${workspaceFolder}/env.env",
+            "cwd": "${workspaceFolder}/build",
+            "preLaunchTask": "Save & Build & Debug pipa",
+            "symbolLoadInfo": {
+              "LoadAll": "true"
+            }
+          }
+
+
+    ]
+}

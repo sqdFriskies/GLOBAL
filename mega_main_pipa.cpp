@@ -1,4 +1,6 @@
 ﻿
+#include <chrono>
+#include <thread>
 #include <iostream>
 #include <cmath>
 #include <cstdio>
@@ -8,11 +10,15 @@
 #include <algorithm>
 #include <set>
 #include "usefull_functions.h"
-#include <windows.h>
+// #ifdef WIN32
+// #include <windows.h>
+// #endif
 #include <string>
 #include <iomanip>
 #include <sstream>
 #include <string>
+#include <memory>
+#include <string.h>
 
 using namespace std;
 namespace NMy
@@ -306,6 +312,7 @@ namespace NMy
 			std::cout << "no";
 
 	}
+
 	void task_3_4_1_3()
 	{
 		double A{}, B{};
@@ -346,7 +353,6 @@ namespace NMy
 		int m = 0;
 		int b1 = 0;
 		int b2 = 0;
-		int i = 0;
 		std::cin >> n;
 		std::cin >> m;
 
@@ -355,7 +361,7 @@ namespace NMy
 		{
 			for (b2 = n; b2 <= m; b2++)
 			{
-				b1 % 2 == 0 && b1 % 3 == 0 && b1 % 5 == 0 && b1 % 7 == 0 && b1 % 11 == 0 && b2 % 2 == 0 && b2 % 3 == 0 && b2 % 5 == 0 && b2 % 7 == 0 && b2 % 11 == 0;
+				//b1 % 2 == 0 && b1 % 3 == 0 && b1 % 5 == 0 && b1 % 7 == 0 && b1 % 11 == 0 && b2 % 2 == 0 && b2 % 3 == 0 && b2 % 5 == 0 && b2 % 7 == 0 && b2 % 11 == 0;
 
 				if (b1 - b2 == 2 || b2 - b1 == 2)
 					std::cout << b1 << " " << b2 << std::endl;
@@ -494,11 +500,10 @@ namespace NMy
 		srand(time(0));
 		int const n = 10;
 		int i = 0;
-		int p = 0;
 		int a[n];
 		for (i = 0; i < n; i++)
 		{
-			a[i] = rand() % 11; n % 5 == 0;
+			a[i] = rand() % 11;
 			std::cout << a[i] << " ";
 		}
 		std::cout << std::endl;
@@ -582,7 +587,7 @@ namespace NMy
 			Дано цілочисельний масив. Вилучити з цього масиву останнє максимальне число.
 		*/
 		srand(time(0));
-		int i = 0;
+		unsigned int i = 0u;
 		std::vector<int> a; //. = { 2,5,10,8,10,9 };
 		a.push_back(2);
 		a.push_back(5);
@@ -591,7 +596,7 @@ namespace NMy
 		a.push_back(10);
 		a.push_back(9);
 
-		for (i = 0; i < a.size(); i++)
+		for (i = 0u; i < a.size(); i++)
 		{
 			/*a[i] = rand() % 10; */std::cout << a[i] << " ";
 		}
@@ -640,7 +645,6 @@ namespace NMy
 
 
 		int max = 0;
-		int maxIdx = 0;
 		int m = 0;
 		int j = 0;
 
@@ -649,7 +653,6 @@ namespace NMy
 			if (a[i] > max)
 			{
 				max = a[i];
-				maxIdx = i;
 
 			}
 
@@ -886,7 +889,6 @@ namespace NMy
 		}
 		std::cout << std::endl;
 
-		int j = 0;
 		{
 			//j = a[0];
 			//a[0] = a[n - 1];
@@ -1020,7 +1022,6 @@ void task_papa6()
 	/* Заполнить массив а размерностью n случайными значениями. Найти максимальное и минимальное значение и поменять их местами. Остальные  значения установить в ноль.*/
 	int const n = 5;
 	int a[n];
-	int m = 0;
 	std::cout << "a[n] = ";
 	for (int i = 0; i < n; i++)//заполнение массива
 	{
@@ -1233,7 +1234,7 @@ void task_knb()
 			NumberDraw++;
 		}
 
-		Sleep(2000);
+		std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 		system("cls");
 	}
 	std::cout << "Вы выиграли " << NumberWin << " Раз."<<std::endl;
@@ -1304,12 +1305,45 @@ void task_4_array()
 	}
 	cout << 1 + x + sum;
 }
-void task_5()
+
+template <class T>
+void print_array(T* data, std::size_t len)
 {
-	int y = 0;
+
+	if(data == nullptr)
+	{
+		return;
+	}
+	cout << "size of int = "<< sizeof(*data);
+	for(int i = 0; i < len; i++)
+	{
+		cout << "["<< i << "]" << " " << *(data + i) << std::endl; 
+
+	}
+		cout << "["<< "1 delta" << "]" << " " << ( reinterpret_cast<short int*>(data + 1) - (short int*)(data + 0) ) << std::endl; 
+}
+
+std::shared_ptr<int> create_int()
+{
+	return std::shared_ptr<int>(new int());
+}
+
+char* create_string(std::size_t size)
+{
+
+
+	return new char[size];
 	
 
+}
 
+std::size_t copy_string(char* str1, std::size_t len1, const char* str2)
+{
+	std::size_t len2 = strlen(str2);
+	for(int i = 0; i< len1;i++)
+	{
+		str1[i]=str2[i];
+	}
 }
 int main()
 {
@@ -1364,6 +1398,41 @@ int main()
 	//task_2_array();
 	// task_3_array();
 	//task_4_array();
-	task_5();
-	system("pause");
+	
+	/*const std::size_t len = 10u;
+
+	int data[len] = {0,1,2,3,4,5,6,7,8,9};
+
+	print_array(data, len);
+	double data1[len] = {0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5};
+	print_array(data1, len);
+	cout << endl;
+	std::shared_ptr<int> a = create_int();
+	if(a != nullptr)
+	{
+		*a = 5;
+		cout << a.get() << " " << *a << endl;
+	}*/
+
+	std::size_t len_of_str = 10;
+	char* str1 = create_string(len_of_str);
+	str1[0] = '\0';
+	char* str2 = create_string(len_of_str);
+	//str2[0] = '\0';
+	//const char* name1 = "Microsoft-MIEngineofCaCa";
+	const char* name1 = "In the Strings";
+	std::size_t len1 = strlen(name1);
+	std::size_t len2_copied = copy_string(str1, len_of_str, name1);
+	(void)copy_string(str2, len_of_str, name1+len2_copied);
+
+	
+	cout<< "name1 = " << str1 << str2;
+	//const char* name2 = "In the Strings"; /*вывести тож с помощью str1 & str2 лучше с помощью функций*/
+
+	//cout<< "name2 = " << str1 << str2;
+	cout<<endl;
+	delete[] str2;
+	delete[] str1;
+	return 0;
+
 }
